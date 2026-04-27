@@ -10,13 +10,14 @@ pygame.init() ## aqui vamos a inicializar a pygame, vamos a traer todas sus herr
 pantalla = pygame.display.set_mode((1200, 700))
 ## en la variable pantalla, madamos a llamar al metodo "display" de la libreria "pygame", y lo ponemos en ".set_mode"
 ## este nos ayuda a indicar de que tamaño queremos el display y lo estblecemos dentro de una tupla
-fondo = pygame.image.load("fondo.png")
-fondo = pygame.transform.scale(fondo,(1200,700))
+fondo = pygame.image.load("fondo.png") ## podemos cargar distintas imagenes con el metodo ".image.load"... en este caso estoy cargando el fondo del juego
+fondo = pygame.transform.scale(fondo,(1200,700)) ## al meetodo #transform.scale# le paso el como paramtero nuestra variable "foindo" que contine mi imagen, tambien le voy 
+## a pasar las medidas que quiero para la pantalla
 
 
-mixer.music.load('musiquita.mp3')
-mixer.music.set_volume(0.4)
-mixer.music.play(-1)
+mixer.music.load('musiquita.mp3') ##tambien existen los metodos para poder cargar musica de fondo como ".music.load"
+mixer.music.set_volume(0.4) ## ajustamos el volumen
+mixer.music.play(-1) ## y le damos play a la musica, se coloca "-1" para que se pueda repetir la canción cuando se acabe 
 
 pygame.display.set_caption("Invasion Zombie") ## este va a ser el nombre que tenga nuestra ventana, es como el titulo
 icono = pygame.image.load("zombie.png") ## en la variable icono mandamos a llamar al metodo "load" de la libreria "pygame" y psamos como parametro el nombre
@@ -51,7 +52,7 @@ enemigo_x = [] ## aqui 8 posisciones en x para nuestro zombie
 enemigo_y = [] ## aquí 8 posiciones en y para nuestro zombie
 enemigo_x_cambio = [] ## aquí vamos a ir colocando las cordenadas de cambio en x de nuestro zombie
 enemigo_y_cambio = []## aquí vamos a ir colocando las cordenadas de cambio en y  de nuestro zombie
-cantidad_enemigos = 8 ## aqui solo decimos cuantos zombies vamos a ir generando, siempre habra 8 zombies
+cantidad_enemigos = 8 ## aqui solo decimos cuantos zombies vamos a ir generando, siempre habra 8 zombies en pantalla... vemos el bucle en linea -> 222
 
 for e in range (cantidad_enemigos):## decimos que por cada elemento de nuestro rango de 8, iremos agregamos a cada una de las siguientes listas:
     img_enemigo.append(pygame.image.load("enemigo.png"))## cargamos la imagen, de lo seran nuestros enemigos
@@ -72,20 +73,20 @@ img_bala = pygame.image.load("osito.png") ## cargamos la imagen, que ahora va se
 bala_x_cambio = 2 ## supongo que esta sera la velocidad de la bala en x
 #bala_y_cambio = 0 ## aqui nunca habra en cambio en esta posisción por eso se inicializa en 0, LA DOCUMENTO
 #bala_visible = False ## a bala_visible la vamos a inicializar en False porque esta no queremos que se vea hasta que sea presionada la tecla espaciadora
-balas = []
+balas = [] ## aqui vamos a ir agregando nuestra balas cada que se presiona la tecla "space" -> linea 166
 
 
-##### Voy a cargar la imagen de corazones para el juego
+##### Voy a cargar la imagen de corazones para el juego, lo hago excatamente igual como hice con el fondo, el osito(balas) etc...
 corazon_img = pygame.image.load("cora.png")
 img_corazon = pygame.transform.scale(corazon_img,(32,32))
 
-vidas = 3 ## esamos son las vidas default/ oprtunidades que tenemos antes de que lo enemigos nos alcencen
-puntaje = 0
-fuente = pygame.font.Font('LeslieCrayon-Bold.ttf',32)
+vidas = 3 ## establecemos las vidas default/ oprtunidades que tenemos antes de que lo enemigos(zoombies) nos alcencen
+puntaje = 0 ## aqui vamos ir suamndo la cantidad de puntos que hagamos segune l numero de zombies al que matemos
+fuente = pygame.font.Font('LeslieCrayon-Bold.ttf',32) ## aqui estoy cargando la fuente que voy a utilizar para el juego, ademas de darle un tamaño
 texto_x = 10
 texto_y = 10
 ## texto final
-fuente_final = pygame.font.Font('LeslieCrayon-Bold.ttf',40)
+fuente_final = pygame.font.Font('LeslieCrayon-Bold.ttf',40) ## Aqui quise darle otro tamaño, porque lo voy a utilizar para otro letrerito, por eso tengo 2 fuentes 
 
 #esta función de aqui nadamas me ayuda a sacar el texto final cuando termina el juego
 def texto_final():
@@ -93,12 +94,15 @@ def texto_final():
     pantalla.blit(mi_fuente_final,(60,200))
 
 ## ahora tenemos una función que me ayuda a mostrar cuantas vidas tenemos al usuario:
-def mostrar_vidas(x,y):
-    for i in range(vidas):
-        pantalla.blit(img_corazon,(x + i * 40, y))
+def mostrar_vidas(x,y): ## pasamos como paramtero las posisioines donde se empezaran a dibujar los corazones
+    for i in range(vidas): ## decimos que por cada elemento de vidas, la variable que alamcena 3 vidas... "range" nos ayuda a contar los elementos del 0 al ... dependiendo el elemento
+        pantalla.blit(img_corazon,(x + i * 40, y)) ## vamos a arrojar en pantalla la imagen de corazon (es dcir 3 corazones)
+        ## " i * 40": nos indica los espeacios que habra entre cada corazon 
+
 def mostrar_puntaje(x,y):
     texto = fuente.render(f'Puntaje: {puntaje}', True, (255,255,255))
-    pantalla.blit(texto,(x,y))
+    pantalla.blit(texto,(x,y)) 
+    
 def jugador (x,y):## luego creamos un funcón que nos va a ayudar a arrojar al jugador en pantalla
     pantalla.blit(img_jugador, (x,y))
     ## madamos a llamar a nuestra pantalla y por medio del metodo "blit", pasamos la imagen del "disparador/jugador/tanque"
@@ -106,7 +110,7 @@ def jugador (x,y):## luego creamos un funcón que nos va a ayudar a arrojar al j
 
 def enemigo(x,y, ene):## luego creamos un funcón que nos va a ayudar a arrojar al jugador en pantalla
     pantalla.blit(img_enemigo[ene], (x,y))
-    ## madamos a llamar a nuestra pantalla y por medio del metodo "blit", pasamos la imagen del "disparador/jugador/tanque"
+     ## madamos a llamar a nuestra pantalla y por medio del metodo "blit", pasamos la imagen del "disparador/jugador/tanque"
     # y las cordenadas que pasamos como paremtro antes, esto nos va a permitir que se puedan dar distintas cordenadas
 
 ###############################################
@@ -120,7 +124,7 @@ def enemigo(x,y, ene):## luego creamos un funcón que nos va a ayudar a arrojar 
 ######################################################
 
 
- ## aqui voy a detectar colicciones....para poder calcular la distancia, exite una formula
+  ## aqui voy a detectar colicciones....para poder calcular la distancia, exite una formula
  ## d = √(x1-x2)^2 + (y1-y2)^2 -> Con ayuda de esta formula podemos obtener cuantos pixeles de distancia tenemos entre el enemigo y la bala
 def detectar_colision(x_1,y_1,x_2,y_2):## se pasan las pisbles posisciones en x & y de los 2 objetos a los que les queremos sacar la distancia
     distancia = math.sqrt(math.pow(x_1 - x_2,2)+ math.pow(y_1 - y_2,2))
@@ -135,7 +139,8 @@ def detectar_colision(x_1,y_1,x_2,y_2):## se pasan las pisbles posisciones en x 
 se_ejecuta = True ## en la variable "se_ejecuta" guardamos un boooleano
 while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonces vamos a hacer, queee....  ********
 
-    #pantalla.fill((125, 100, 17))  ## aquí establecemos el color de la pantalla
+    #pantalla.fill((125, 100, 17))  ## aquí establecemos el color de la pantalla.... pero como tenemos un fondo super bonito, esta linea no es necesaria(forma parte de
+    #una version anterior)
     pantalla.blit(fondo,(0,0))
 
     for evento in pygame.event.get():## que por cada evento, dentro de "pygame.event.get()" *********
@@ -155,10 +160,11 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
                 print("Flecha hacia arriba presionda")
             if evento.key == pygame.K_DOWN:
                 jugador_y_cambio = 0.3
-            if evento.key == pygame.K_SPACE: ## decimos que si se presiona la barra espaciadora verifcaremos si:
-                sonido_bala = mixer.Sound('disparo.wav')
-                sonido_bala.play()
-                balas.append([jugador_x, jugador_y + 20])
+            if evento.key == pygame.K_SPACE: ## decimos que si se presiona la barra espaciadora entonces :
+                sonido_bala = mixer.Sound('disparo.wav') ## madamos a llamar al sonido de la bala
+                sonido_bala.play() ## y le damos play al sonido
+                balas.append([jugador_x, jugador_y + 20])## se va a crear una nueva bala, en la lista "balas" linea -> 76 donde vamos a agregar su pisisción en x & y
+                
                 ######ESTA ERA LA LOGICA PARA QUE SOLO SE VIERA UNA BALA/OSITO A LA VEZ
 
                 # if not bala_visible: ## si la variable global de "bala_visible" no tiene un valor "TRUE" es decir "FALSE"
@@ -183,9 +189,9 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
     jugador_x += jugador_x_cambio
     jugador_y += jugador_y_cambio
     ## Aquí fue necesario poder establecer los valores maximos del movimeinto del tanque en el eje y:
-    ##tomando en cuenta qu ele pixel 0 empeiza en lo alto de la pnatalla y el pixel 700 hasta abajo, y restando el tamaño del tanque
+    ##tomando en cuenta que el pixel 0 empeiza en lo alto de la pnatalla y el pixel 700 hasta abajo, y restando el tamaño del tanque
     ##64 bits, nos deje un espacio de 636 pixeles para movernos,
-    y_max = 500 ## 500 pixeles es la altura maxima que puede alcanzar nuestro tanque, no más si no quedaría flotando en el cielo
+    y_max = 500 ## 500 pixeles es la altura maxima que puede alcanzar nuestro tanque, no más si no quedaría flotando en el cielo (considernado el fondo que cargamos antes)
     y_min= 636 ## 636 pixeles son la profundidad minima a la que queremos que llegue nuestro tanque sin salir de la pantalla
 
     if jugador_x <= 0: ## si el "jugador_x", se encuentra en la posición menor a 0 o igual a 0, es decir en el eje de las x:
@@ -211,9 +217,10 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
 
 #################################################
 
-        ### entonces aun dentro del ciclo for, vamos a decir que se le agregue la nueva posión que quedo en "enemigo_x_cambio" (esto es solo para x )
+        ### ####################################################################################################################################
     if not game_over:
-        for e in range(cantidad_enemigos):
+        for e in range(cantidad_enemigos): ## decimos que por cada enemigo -> linea 55 (nos indica 8 enemigos), con "range" contamos los elementos de la variable
+            ##"cantidad_enemigos"
             enemigo_x[e] += enemigo_x_cambio[e]  ## aqui vamos a ir sumando el movimiento en x a la posición actual del enemigo
 
             if enemigo_x[e] >= 1136: ## enteonces decimos que si el enemigo estando en el eje x, toma una cordenada  mayor a "1136" pixel:
@@ -230,10 +237,6 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
             if enemigo_x[e] <= 0:
                 enemigo_x[e] = random.randint(0, 1136)
                 enemigo_y[e] = random.randint(500, 630)
-
-            #### Aquí vamos a ponerle limites a nuestro tanque, porque no queremos que salga de la pantalla, para ello, entonces decimos que
-
-            ####Cunado decimos que si el jugador es menor o igual a 0 -> unicamente nos referimos al lado izquierdo
 
             if enemigo_y[e] <= 500:  ## si el "enemigo_x", se encuentra en la posición menor a 0 o igual a 0, es decir en el eje de las x:
                 enemigo_y[e] = 500
