@@ -11,7 +11,7 @@ pantalla = pygame.display.set_mode((1200, 700))
 ## en la variable pantalla, madamos a llamar al metodo "display" de la libreria "pygame", y lo ponemos en ".set_mode"
 ## este nos ayuda a indicar de que tamaño queremos el display y lo estblecemos dentro de una tupla
 fondo = pygame.image.load("fondo.png") ## podemos cargar distintas imagenes con el metodo ".image.load"... en este caso estoy cargando el fondo del juego
-fondo = pygame.transform.scale(fondo,(1200,700)) ## al meetodo #transform.scale# le paso el como paramtero nuestra variable "foindo" que contine mi imagen, tambien le voy 
+fondo = pygame.transform.scale(fondo,(1200,700)) ## al meetodo #transform.scale# le paso el como paramtero nuestra variable "fondo" que contine mi imagen, tambien le voy 
 ## a pasar las medidas que quiero para la pantalla
 
 
@@ -29,23 +29,23 @@ pygame.display.set_icon(icono)## aquí ya por medio del metodo "display.set_icon
 #######################################
 ####AQUI TENEMOS AL TANQUE(JUAGDOR) JUNTO CON SUS POSISCIONES Y SU IMAGEN
 #######################################
-img_jugador = pygame.image.load("tank.png") ## cragamos la imagen, de lo sera nuestro disparador
+img_jugador = pygame.image.load("tank.png") ## cargamos la imagen, de lo sera nuestro disparador
 jugador_x = 1136## inicializamos los ejes de las cordenadas en x & y
 jugador_y = 500
 jugador_y_cambio = 0  ## esta variable nos va ayudar a saber como cambia la posición de nuestro tanque, en el eje de las y
 jugador_x_cambio = 0 ## esta variable nos va ayudar a saber como cambia la posición de nuestro tanque, en el eje de las x
 ## como estas 2 se van a ir actualizndo cada que el ususario decida apretar una tecla, se inicializan en 0
 
-###### tenemos que la imagen del tanque y el enemigo es de 64, entonces si mi largo es de 800, le resto 64 y me queda 736....
+###### tenemos que la imagen del tanque y el enemigo es de 64, entonces si mi largo es de 1200, le resto 64 y me queda 1136....
 # colocamos a una distancia que nos agrade de inicio como referencia para el eje x
-##### tenemos a 600 de ancho, y le restamos 64, lo que quiere decir que nos queda 536...
-# y si lo queremos a la mitad, dividimos a 536/2 nos da 268
+##### tenemos a 700 de ancho, y le restamos 64, lo que quiere decir que nos queda 636...
+# y si lo queremos a la mitad, dividimos a 636/2 nos da 318
 
 #####################################
 ###AQUÍ TENEMOS AL ENEMIGO QUE, JUNTO CON SUS MOVIMENTOS Y SU IMAGEN
 ####################################
 game_over = False
-## para poder rcear varios zombies / enemigos al mismo tiempo
+## para poder crear varios zombies / enemigos al mismo tiempo
 ## vamosa crear diferentes listas, con las diferentes poisciones de nuestros zoombies
 img_enemigo = [] ## aqui vamos a crear una lista que contenga 8 veces la imagen del zombie
 enemigo_x = [] ## aqui 8 posisciones en x para nuestro zombie
@@ -59,9 +59,9 @@ for e in range (cantidad_enemigos):## decimos que por cada elemento de nuestro r
     ##como el enemigo se tiene que mover solito por medio del metodo "random.randint" le pasamos las cordenads en eje x & y
     enemigo_x.append(random.randint(0,1136))##entonces en eje x de 1200 -64 bits del enemigo, nos queda del punto 0 al 1136
     enemigo_y.append(random.randint(500,630))##entonces en eje y de 500 a 630
-    ##para que quede noun pequeño espacio antes le vamos a dar 20 puntos
+ 
     enemigo_x_cambio.append(0.3) ## esta variable nos va ayudar a saber como cambia la posición de nuestro enemigo
-    enemigo_y_cambio.append(0.3) ## antes 50
+    enemigo_y_cambio.append(0.3) 
 
 
 ######################################
@@ -70,7 +70,7 @@ for e in range (cantidad_enemigos):## decimos que por cada elemento de nuestro r
 img_bala = pygame.image.load("osito.png") ## cargamos la imagen, que ahora va ser lo que usaremos como bala
 #bala_x = 1136 ## nosotros vamos a disparar de forma horizontal por eso colocamos a la bala en x
 #bala_y = 0 ### "bala_y" empieza en 0, pero cuando disparo toma la posición del jugador
-bala_x_cambio = 2 ## supongo que esta sera la velocidad de la bala en x
+bala_x_cambio = 2 ## esta sera la velocidad de la bala en x
 #bala_y_cambio = 0 ## aqui nunca habra en cambio en esta posisción por eso se inicializa en 0, LA DOCUMENTO
 #bala_visible = False ## a bala_visible la vamos a inicializar en False porque esta no queremos que se vea hasta que sea presionada la tecla espaciadora
 balas = [] ## aqui vamos a ir agregando nuestra balas cada que se presiona la tecla "space" -> linea 166
@@ -81,12 +81,12 @@ corazon_img = pygame.image.load("cora.png")
 img_corazon = pygame.transform.scale(corazon_img,(32,32))
 
 vidas = 3 ## establecemos las vidas default/ oprtunidades que tenemos antes de que lo enemigos(zoombies) nos alcencen
-puntaje = 0 ## aqui vamos ir suamndo la cantidad de puntos que hagamos segune l numero de zombies al que matemos
-fuente = pygame.font.Font('LeslieCrayon-Bold.ttf',32) ## aqui estoy cargando la fuente que voy a utilizar para el juego, ademas de darle un tamaño
+puntaje = 0 ## aqui vamos ir suamndo la cantidad de puntos que hagamos segun l numero de zombies al que matemos
+fuente = pygame.font.Font('LeslieCrayon-Bold.ttf',32) ## aqui estoy cargando la fuente que voy a utilizar para el juego, ademas de darle un tamaño-> line 103
 texto_x = 10
 texto_y = 10
 ## texto final
-fuente_final = pygame.font.Font('LeslieCrayon-Bold.ttf',40) ## Aqui quise darle otro tamaño, porque lo voy a utilizar para otro letrerito, por eso tengo 2 fuentes 
+fuente_final = pygame.font.Font('LeslieCrayon-Bold.ttf',40) ## Aqui quise darle otro tamaño, porque lo voy a utilizar para otro letrerito, por eso tengo 2 fuentes-> linea 93
 
 #esta función de aqui nadamas me ayuda a sacar el texto final cuando termina el juego
 def texto_final():
@@ -110,7 +110,7 @@ def jugador (x,y):## luego creamos un funcón que nos va a ayudar a arrojar al j
 
 def enemigo(x,y, ene):## luego creamos un funcón que nos va a ayudar a arrojar al jugador en pantalla
     pantalla.blit(img_enemigo[ene], (x,y))
-     ## madamos a llamar a nuestra pantalla y por medio del metodo "blit", pasamos la imagen del "disparador/jugador/tanque"
+     ## madamos a llamar a nuestra pantalla y por medio del metodo "blit", pasamos la imagen del "enemigo/zombie"
     # y las cordenadas que pasamos como paremtro antes, esto nos va a permitir que se puedan dar distintas cordenadas
 
 ###############################################
@@ -128,12 +128,12 @@ def enemigo(x,y, ene):## luego creamos un funcón que nos va a ayudar a arrojar 
  ## d = √(x1-x2)^2 + (y1-y2)^2 -> Con ayuda de esta formula podemos obtener cuantos pixeles de distancia tenemos entre el enemigo y la bala
 def detectar_colision(x_1,y_1,x_2,y_2):## se pasan las pisbles posisciones en x & y de los 2 objetos a los que les queremos sacar la distancia
     distancia = math.sqrt(math.pow(x_1 - x_2,2)+ math.pow(y_1 - y_2,2))
-    ## en la variable "distancia" vamos a guardar los el resultado
+    ## en la variable "distancia" vamos a guardar los resultados
     ## importante recordar que el metodo "math.sqrt" -> nos ayuda a sacar la raiz cuadrada de un valor
     ## y que el metodo "math.pow", nos ayuda a obtener el cuadrado
     if distancia < 27: ## decimos que si la distancia obtenida entre nuestro objeto uno y el objeto 2 es menos a 27 pixeles
         return True## regresemos True, es decir "que hubo colicción", pero aun no lo marcamos como colisisón
-    else: ## en dado caso de que haya mas de 27 pixeles dde distancia entre un objeto y otro
+    else: ## en dado caso de que haya mas de 27 pixeles de distancia entre un objeto y otro
         return False ## nos va a regresar "False" es decir que no hay colisón entre obj1 y obj2
 
 se_ejecuta = True ## en la variable "se_ejecuta" guardamos un boooleano
@@ -234,19 +234,19 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
                     break
 
                 # SI SALE POR LA IZQUIERDA (solo respawn)
-            if enemigo_x[e] <= 0:
+            if enemigo_x[e] <= 0:## si el "enemigo_x", se encuentra en la posición menor a 0 o igual a 0, es decir en el eje de las x:
                 enemigo_x[e] = random.randint(0, 1136)
                 enemigo_y[e] = random.randint(500, 630)
 
-            if enemigo_y[e] <= 500:  ## si el "enemigo_x", se encuentra en la posición menor a 0 o igual a 0, es decir en el eje de las x:
-                enemigo_y[e] = 500
-                enemigo_y_cambio[e] = 0.3 ## entonces el jugador tendra un cordenada equivalente a  0, siempre y cuando se cumpla la condición de arriba
-                ## esto lo que provoca es que, no podemos pasar del liminte de la pantalla, ya que llegando a cierta cordenada, el valor siempre sera 0
-            ### CUANDO DECIMOS QUE SI "jugador_x" es mayor o igual a 736(800-64bits de personje), hablamos de avanzar hacia el lado derecho y sus limites:
-            #enemigo_x[e]+= enemigo_x_cambio[e]  ahorita lo regreso por si no me sale me da miedo
+            if enemigo_y[e] <= 500:  ## si el "enemigo_y", se encuentra en la posición menor a 500 o igual a 500, es decir en el eje de las y:
+                enemigo_y[e] = 500 ## permanecera en esa cordenada, y no podra avanzar mas, si no quedaria flotando 
+                enemigo_y_cambio[e] = 0.3 ## entonces el enemigo tendra una cordenada equivalente a  500, siempre y cuando se cumpla la condición de arriba
+                ## esto lo que provoca es que, no podemos pasar del liminte del piso (respecto a la imagen de fondo), ya que llegando a cierta cordenada, el valor siempre sera 500
+            ### ##################################################################################################################################
+                    ###############################################################################
 
-            if enemigo_y[e] >= 630: ## cuando "jugador_x" se encuentre en una cordenada mayor o igual 630...
-                enemigo_y[e] = 630## su valor de cordenada siempre se mantendra en 736... no hay escapatoria
+            if enemigo_y[e] >= 630: ## cuando "enemigo_y" se encuentre en una cordenada mayor o igual 630...
+                enemigo_y[e] = 630## su valor de cordenada siempre se mantendra en 630... no hay escapatoria
                 enemigo_y_cambio[e] = -0.3
                 #enemigo_x[e]  += enemigo_x_cambio[e]
 
