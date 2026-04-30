@@ -11,7 +11,7 @@ pantalla = pygame.display.set_mode((1200, 700))
 ## en la variable pantalla, madamos a llamar al metodo "display" de la libreria "pygame", y lo ponemos en ".set_mode"
 ## este nos ayuda a indicar de que tamaño queremos el display y lo estblecemos dentro de una tupla
 fondo = pygame.image.load("fondo.png") ## podemos cargar distintas imagenes con el metodo ".image.load"... en este caso estoy cargando el fondo del juego
-fondo = pygame.transform.scale(fondo,(1200,700)) ## al meetodo #transform.scale# le paso el como paramtero nuestra variable "fondo" que contine mi imagen, tambien le voy 
+fondo = pygame.transform.scale(fondo,(1200,700)) ## al meetodo #transform.scale   le paso el como paramtero nuestra variable "fondo" que contine mi imagen, tambien le voy 
 ## a pasar las medidas que quiero para la pantalla
 
 
@@ -289,4 +289,9 @@ while se_ejecuta: ## decimos que miestra "se_ejecuta" tenga valor "True", entonc
     if game_over:
         texto_final()
 
-    pygame.display.update() ## y hacemos actualización de nuestra
+    pygame.display.update() ## y hacemos actualización de nuestra 
+
+
+
+##################################################################################################################################################
+######################################################################################################
